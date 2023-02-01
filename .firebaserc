@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "proyectoincidencias-9b342": {
+      "hosting": {
+        "ProyectoIncidencias_Angel_Mora_Gonzalez": [
+          "proyectoincidencias-9b342"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "proyectoincidencias-9b342"
+  }
+}
