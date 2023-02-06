@@ -1,3 +1,10 @@
+/*
+IncidenciaService --> Clase de servicio para la interfaz Incidencias, aqui se especifíca toda la lógica detras
+de la gestion de base de datos de nuestra aplicacion
+
+@csi21amorlez
+*/
+
 import { Injectable } from '@angular/core';
 import {
   CollectionReference,

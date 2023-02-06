@@ -1,6 +1,9 @@
-import { Timestamp } from '@angular/fire/firestore';
+/*
+Incidencias --> Clase modelo para la inserción en base de datos de incidencias
+@csi21amorlez
+*/
 
-//Clase modelo de incidencias
+
 export interface Incidencias {
   uuid: string;
   fecha: string;

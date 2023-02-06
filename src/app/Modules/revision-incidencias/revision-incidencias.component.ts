@@ -1,7 +1,12 @@
+/*
+RevisionIncidenciasComponent--> Clase controlador del componente RevisionIncidencias
+se encarga principalmente de obtener todos los datos de la base de datos para
+posteriormente mostralos por la vista
+@csi21amorlez
+*/
 import { Component, OnInit } from '@angular/core';
 import { IncidenciaService } from '../../Shared/Services/incidencia.service';
 import { Incidencias } from '../../Shared/Interfaces/incidencias';
-import { Location } from '@angular/common';
 import { MenuComponent } from '../../Shared/menu/menu.component';
 
 @Component({
@@ -11,11 +16,12 @@ import { MenuComponent } from '../../Shared/menu/menu.component';
 })
 export class RevisionIncidenciasComponent implements OnInit {
   listIncidencias: Incidencias[];
-  location: Location;
+
 
   constructor(private service: IncidenciaService) {}
 
   ngOnInit(): void {
+    //Obtenemos todos los registros de la base de datos para mostralo
     this.service.getAll().subscribe((incidencia) => {
       this.listIncidencias = incidencia;
     });

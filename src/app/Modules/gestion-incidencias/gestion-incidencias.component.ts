@@ -10,7 +10,7 @@ export class GestionIncidenciasComponent implements OnInit {
 
   constructor(private service:IncidenciaService) { }
 
-  
+
 
   ngOnInit(): void {
   }
