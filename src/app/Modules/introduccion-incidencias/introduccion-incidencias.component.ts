@@ -17,6 +17,7 @@ export class IntroduccionIncidenciasComponent implements OnInit {
   //Formulario con el que insertaremos nuevas incidencias en base de datos
   formulario: FormGroup;
 
+
   constructor(private service: IncidenciaService) {
     this.formulario = new FormGroup({
       uuid: new FormControl(),
@@ -24,8 +25,8 @@ export class IntroduccionIncidenciasComponent implements OnInit {
       lugarIncidencia: new FormControl(),
       descIncidencia: new FormControl(),
       posibleArreglo: new FormControl(),
-      estado: new FormControl(),
-      revisada: new FormControl(),
+      estado: new FormControl('Pendiente'),
+      revisada:new FormControl(false),
     });
   }
 

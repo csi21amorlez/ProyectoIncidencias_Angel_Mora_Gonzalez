@@ -19,7 +19,8 @@
       <td>{{incidencia.descIncidencia}}</td>
       <td>{{incidencia.posibleArreglo}}</td>
       <td>{{incidencia.estado}}</td>
-      <td>{{incidencia.revisada}}</td>
+      <ng-template #SinRevisar><td>Sin revisar</td></ng-template>
+      <td *ngIf="incidencia.revisada == true";ngIfElse="#SinRevisar">Revisada</td>
     </tr>
   </tbody>
 </table>
