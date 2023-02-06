@@ -23,17 +23,10 @@ export class IncidenciaService {
     this.coleccionIncidencias = collection(this.firestore, 'Incidencias');
   }
 
-  /*
-  Actualmente en la fase 1, no se muy bien que contendrá la interfaz incidencias,
-  por lo que simplimente he creado la interfaz y la he dejado vacia.
-  Esto para poder actualizarla mas tarde pero dejar ya toda la lógica del crud hecha
-  */
 
   //Obtiene todos los registros en base de datos
   getAll() {
-    return collectionData(this.coleccionIncidencias, {
-      idField: 'id',
-    }) as Observable<Incidencias>;
+    return collectionData(this.coleccionIncidencias, {idField:'{uuid}'}) as Observable<Incidencias[]>;
   }
   //Obtiene una incidencia por su id
   getById(id: string) {
