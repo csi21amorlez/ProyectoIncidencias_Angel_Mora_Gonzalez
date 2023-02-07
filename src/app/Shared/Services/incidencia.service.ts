@@ -1,6 +1,7 @@
 /*
-IncidenciaService --> Clase de servicio para la interfaz Incidencias, aqui se especifíca toda la lógica detras
-de la gestion de base de datos de nuestra aplicacion
+*IncidenciaService -->
+Clase de servicio para la interfaz Incidencias, aqui se especifíca toda la lógica detras
+de la gestion de base de datos de nuestra aplicacion.
 
 @csi21amorlez
 */
@@ -30,10 +31,11 @@ export class IncidenciaService {
     this.coleccionIncidencias = collection(this.firestore, 'Incidencias');
   }
 
-
   //Obtiene todos los registros en base de datos
   getAll() {
-    return collectionData(this.coleccionIncidencias, {idField:'{uuid}'}) as Observable<Incidencias[]>;
+    return collectionData(this.coleccionIncidencias, {
+      idField: 'id',
+    }) as Observable<Incidencias[]>;
   }
   //Obtiene una incidencia por su id
   getById(id: string) {

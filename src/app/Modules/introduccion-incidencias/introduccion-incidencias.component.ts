@@ -20,7 +20,7 @@ export class IntroduccionIncidenciasComponent implements OnInit {
 
   constructor(private service: IncidenciaService) {
     this.formulario = new FormGroup({
-      uuid: new FormControl(),
+      id: new FormControl(),
       fecha: new FormControl(),
       lugarIncidencia: new FormControl(),
       descIncidencia: new FormControl(),

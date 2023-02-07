@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IncidenciaService } from '../../Shared/Services/incidencia.service';
+import { Incidencias } from '../../Shared/Interfaces/incidencias';
 
 @Component({
   selector: 'app-gestion-incidencias',
@@ -8,11 +10,14 @@ import { IncidenciaService } from '../../Shared/Services/incidencia.service';
 })
 export class GestionIncidenciasComponent implements OnInit {
 
-  constructor(private service:IncidenciaService) { }
+  constructor(private service:IncidenciaService, private ruta:ActivatedRoute) { }
 
-
+incidencia?:Incidencias;
 
   ngOnInit(): void {
+    let id =this.ruta.snapshot.paramMap.get('id');
+    console.log(id)
+    this.incidencia = this.service.getById(id)[0];
   }
 
 }

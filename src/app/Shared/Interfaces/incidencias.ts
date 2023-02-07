@@ -5,7 +5,7 @@ Incidencias --> Clase modelo para la inserción en base de datos de incidencias
 
 
 export interface Incidencias {
-  uuid: string;
+  id: string;
   fecha: string;
   lugarIncidencia: string;
   descIncidencia: string;
