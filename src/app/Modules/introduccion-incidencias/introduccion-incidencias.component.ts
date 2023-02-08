@@ -1,7 +1,8 @@
 /*
-IntroduccionIncidenciasComponent--> Clase controlador del componente IntroduccionIncidencias,
-en el que principalmente realizaremos la inserción de nuevas incidencias en base de datos a través
-de un formulario reactivo
+*IntroduccionIncidenciasComponent-->
+ Clase controlador del componente IntroduccionIncidencias,
+en el que principalmente realizaremos la inserción de nuevas
+incidencias en base de datos a través de un formulario reactivo
 */
 
 import { Component, OnInit } from '@angular/core';
