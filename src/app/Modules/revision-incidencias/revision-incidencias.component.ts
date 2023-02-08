@@ -21,10 +21,7 @@ export class RevisionIncidenciasComponent implements OnInit {
 
   constructor(private service: IncidenciaService) {}
 
-  delete(incidencia:Incidencias){
-    this.service.delete(incidencia.id);
-  }
-
+ 
   ngOnInit(): void {
     //Obtenemos todos los registros de la base de datos para mostralo
     this.service.getAll().subscribe((incidencia) => {

@@ -2,23 +2,17 @@
   <thead>
     <tr>
       <th scope="col">Fecha incidencia</th>
-      <th scope="col">Lugar incidencia</th>
       <th scope="col">Descripcion incidencia</th>
-      <th scope="col">Posible arreglo</th>
-      <th scope="col">Estado incidencia</th>
-      <th scope="col">Revisado</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let incidencia of listIncidencias">
       <td>{{incidencia.fecha | date:'dd/MM/yyyy'}}</td>
-      <td>{{incidencia.lugarIncidencia}}</td>
       <td>{{incidencia.descIncidencia}}</td>
-      <td>{{incidencia.posibleArreglo}}</td>
-      <td>{{incidencia.estado}}</td>
-      <td>{{incidencia.revisada ? 'Revisada' : 'Sin revisar'}}</td>
-
+      <button class="btn btn-primary btn-lg" [routerLink]="['Detalle/', incidencia.id]">Detalle</button>
     </tr>
+
   </tbody>
 </table>
 
+<button class="btn btn-primary" (click)="goBack()">Volver</button>

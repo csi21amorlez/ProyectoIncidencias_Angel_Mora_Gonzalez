@@ -19,6 +19,7 @@ import {
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Incidencias } from '../Interfaces/incidencias';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -26,21 +27,26 @@ import { Incidencias } from '../Interfaces/incidencias';
 export class IncidenciaService {
   private coleccionIncidencias: CollectionReference<DocumentData>;
 
-  constructor(private firestore: Firestore) {
+  constructor(private firestore: Firestore, private af:AngularFirestore) {
     //Establecemos la referencia a la base de datos de firebase
     this.coleccionIncidencias = collection(this.firestore, 'Incidencias');
   }
 
   //Obtiene todos los registros en base de datos
-  getAll() {
+  getAll() :Observable<Incidencias[]>{
     return collectionData(this.coleccionIncidencias, {
       idField: 'id',
     }) as Observable<Incidencias[]>;
   }
   //Obtiene una incidencia por su id
   getById(id: string) {
-    const REF = doc(this.firestore, 'Incidencias/${id}');
+
+    return this.af.collection('Incidencias').doc(id).snapshotChanges();
+
+    /*
+
     return docData(REF, { idField: 'id' });
+  */
   }
   //Elimina una incidencia de la base de datos
   delete(id: string) {
