@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './menu.component';
 import { GestionIncidenciasComponent } from '../../../Modules/gestion-incidencias/gestion-incidencias.component';
+import { NavbarComponent } from '../../../Modules/navbar/navbar.component';
+import { NavbarModule } from '../../../Modules/navbar/navbar.module';
 
 const routes: Routes = [
   //Ruta vacía por defecto

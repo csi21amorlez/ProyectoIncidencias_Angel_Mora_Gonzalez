@@ -5,6 +5,9 @@ import { GestionIncidenciasRoutingModule } from './gestion-incidencias-routing.m
 import { GestionIncidenciasComponent } from './gestion-incidencias.component';
 import { DetailIncidenciasComponent } from 'src/app/Shared/Components/detail-incidencias/detail-incidencias.component';
 import { ListIncidenciasComponent } from 'src/app/Shared/Components/list-incidencias/list-incidencias.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarModule } from '../navbar/navbar.module';
+
 
 
 
@@ -12,11 +15,13 @@ import { ListIncidenciasComponent } from 'src/app/Shared/Components/list-inciden
   declarations: [
     GestionIncidenciasComponent,
     DetailIncidenciasComponent,
-    ListIncidenciasComponent
+    ListIncidenciasComponent,
   ],
   imports: [
     CommonModule,
-    GestionIncidenciasRoutingModule
+    GestionIncidenciasRoutingModule,
+    NavbarModule,
+
   ]
 })
 export class GestionIncidenciasModule { }

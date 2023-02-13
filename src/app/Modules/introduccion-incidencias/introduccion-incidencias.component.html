@@ -1,12 +1,16 @@
-<div class="container w-25">
+<app-navbar></app-navbar>
+<div class="container mt-4">
   <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="container w-25 border shadow">
+  <input type="text" class="form-control mt-3" formControlName="lugarIncidencia" placeholder="Lugar de la incidencia" />
+  <input type="text" class="form-control mt-3" formControlName="descIncidencia" placeholder="Descripcion de la incidencia" />
+  <input type="text" class="form-control mt-3" formControlName="posibleArreglo"
+    placeholder="Posible arreglo de la incidencia">
+  <label for="mesDisponible">Fecha de la incidencia</label>
+  <input type="date" class="form-control" formControlName="fecha" name="mesDisponible">
+  <button class="btn btn-dark" type="submit">Enviar</button>
+</div>
+</form>
 
-    <input type="text" class="form-control" formControlName="lugarIncidencia" placeholder="Lugar de la incidencia" />
-    <input type="text" class="form-control" formControlName="descIncidencia" placeholder="Descripcion de la incidencia"/>
-    <input type="text" class="form-control" formControlName="posibleArreglo" placeholder="Posible arreglo de la incidencia">
-    <label for="mesDisponible">Fecha de la incidencia</label>
-    <input type="date" class="form-control" formControlName="fecha" name="mesDisponible">
-    <button class="btn btn-dark" type="submit">Enviar</button>
-  </form>
 
 </div>
