@@ -8,7 +8,7 @@ posteriormente mostralos por la vista
 import { Component, OnInit } from '@angular/core';
 import { IncidenciaService } from '../../Shared/Services/incidencia.service';
 import { Incidencias } from '../../Shared/Interfaces/incidencias';
-import { MenuComponent } from '../../Shared/menu/menu.component';
+import { MenuComponent } from '../../Shared/Components/menu/menu.component';
 
 @Component({
   selector: 'app-revision-incidencias',
