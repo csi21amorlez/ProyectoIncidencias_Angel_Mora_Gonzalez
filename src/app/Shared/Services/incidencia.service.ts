@@ -16,7 +16,7 @@ import {
   doc,
   updateDoc,
 } from '@firebase/firestore';
-import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { Firestore, collectionData, docData, where } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Incidencias } from '../Interfaces/incidencias';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -59,4 +59,9 @@ export class IncidenciaService {
   create(incidencia: Incidencias) {
     return addDoc(this.coleccionIncidencias, incidencia);
   }
+
+  getIncidenciaByEstado(estado:boolean){
+    return this.af.collection('Incidencias', ref => ref.where('revisada', '==', estado)).snapshotChanges();
+  }
+
 }
