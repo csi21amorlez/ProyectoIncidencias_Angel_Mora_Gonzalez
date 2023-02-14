@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MenuComponent } from './menu.component';
-import { GestionIncidenciasComponent } from '../../../Modules/gestion-incidencias/gestion-incidencias.component';
-import { NavbarComponent } from '../../../Modules/navbar/navbar.component';
-import { NavbarModule } from '../../../Modules/navbar/navbar.module';
+import { GestionIncidenciasComponent } from '../gestion-incidencias/gestion-incidencias.component';
+import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarModule } from '../navbar/navbar.module';
 
 const routes: Routes = [
   //Ruta vacía por defecto
@@ -14,7 +14,7 @@ const routes: Routes = [
     path: 'IntroduccionIncidencias',
     loadChildren: () =>
       import(
-        '../../../Modules/introduccion-incidencias/introduccion-incidencias.module'
+        '../introduccion-incidencias/introduccion-incidencias.module'
       ).then((m) => m.IntroduccionIncidenciasModule),
   },
 
@@ -23,7 +23,7 @@ const routes: Routes = [
     path: 'GestionIncidencias',
     loadChildren: () =>
       import(
-        '../../../Modules/gestion-incidencias/gestion-incidencias.module'
+        '../gestion-incidencias/gestion-incidencias.module'
       ).then((m) => m.GestionIncidenciasModule),
   },
 
@@ -32,7 +32,7 @@ const routes: Routes = [
     path: 'RevisionIncidencias',
     loadChildren: () =>
       import(
-        '../../../Modules/revision-incidencias/revision-incidencias.module'
+        '../revision-incidencias/revision-incidencias.module'
       ).then((m) => m.RevisionIncidenciasModule),
   },
 ];

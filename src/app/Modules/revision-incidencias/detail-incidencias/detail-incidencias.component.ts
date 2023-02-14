@@ -13,6 +13,7 @@ export class DetailIncidenciasComponent implements OnInit {
   incidencia?: Incidencias;
   id: string;
 
+
   constructor(
     private service: IncidenciaService,
     private ruta: ActivatedRoute,
@@ -20,7 +21,7 @@ export class DetailIncidenciasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.id = this.ruta.snapshot.paramMap.get('id')!;
+    this.id = this.ruta.snapshot.paramMap.get('id');
     console.log(this.id);
     this.service.getById(this.id).subscribe((resp: any) => {
       this.incidencia = resp.payload.data();
@@ -29,5 +30,20 @@ export class DetailIncidenciasComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  cambiarEstado(){
+    if(!this.incidencia.revisada){
+      this.id = this.ruta.snapshot.paramMap.get('id');
+      this.incidencia.revisada = true;
+      this.service.update(this.id, this.incidencia)
+    }
+  }
+  delete(){
+
+    this.id = this.ruta.snapshot.paramMap.get('id');
+    this.service.delete(this.id)
+    alert('Incidencia eliminada')
+    this.location.back()
   }
 }

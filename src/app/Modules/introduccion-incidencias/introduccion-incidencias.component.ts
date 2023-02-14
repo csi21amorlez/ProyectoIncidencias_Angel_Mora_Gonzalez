@@ -6,8 +6,9 @@ incidencias en base de datos a través de un formulario reactivo
 */
 
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IncidenciaService } from '../../Shared/Services/incidencia.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-introduccion-incidencias',
@@ -19,7 +20,7 @@ export class IntroduccionIncidenciasComponent implements OnInit {
   formulario: FormGroup;
 
 
-  constructor(private service: IncidenciaService) {
+  constructor(private service: IncidenciaService, private location:Location) {
     this.formulario = new FormGroup({
       id: new FormControl(),
       fecha: new FormControl(),
@@ -37,5 +38,7 @@ export class IntroduccionIncidenciasComponent implements OnInit {
     const response = await this.service.create(this.formulario.value);
     //Al enviar los datos, nos avisará usando un alert de que se ha insertado correctamente la incidencia
     alert('Incidencia creada correctamente');
+    this.location.back();
   }
+  
 }

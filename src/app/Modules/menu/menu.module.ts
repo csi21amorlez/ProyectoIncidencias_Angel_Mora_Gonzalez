@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MenuRoutingModule } from './menu-routing.module';
 import { MenuComponent } from './menu.component';
-import { NavbarModule } from '../../../Modules/navbar/navbar.module';
+import { NavbarModule } from '../navbar/navbar.module';
 
 @NgModule({
   declarations: [MenuComponent],

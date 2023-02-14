@@ -27,20 +27,19 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class IncidenciaService {
   private coleccionIncidencias: CollectionReference<DocumentData>;
 
-  constructor(private firestore: Firestore, private af:AngularFirestore) {
+  constructor(private firestore: Firestore, private af: AngularFirestore) {
     //Establecemos la referencia a la base de datos de firebase
     this.coleccionIncidencias = collection(this.firestore, 'Incidencias');
   }
 
   //Obtiene todos los registros en base de datos
-  getAll() :Observable<Incidencias[]>{
+  getAll(): Observable<Incidencias[]> {
     return collectionData(this.coleccionIncidencias, {
       idField: 'id',
     }) as Observable<Incidencias[]>;
   }
   //Obtiene una incidencia por su id
   getById(id: string) {
-
     return this.af.collection('Incidencias').doc(id).snapshotChanges();
 
     /*
@@ -50,13 +49,11 @@ export class IncidenciaService {
   }
   //Elimina una incidencia de la base de datos
   delete(id: string) {
-    const REF = doc(this.firestore, 'Incidencias/${id}');
-    return deleteDoc(REF);
+    return this.af.collection('Incidencias').doc(id).delete();
   }
   //Actualiza los datos de un registro existente en base de datos
-  update(incidencia: Incidencias) {
-    const REF = doc(this.firestore, 'Incidencias/${id}');
-    return updateDoc(REF, { ...incidencia });
+  update(docId: string, incidencia: Incidencias) {
+    return this.af.collection('Incidencias').doc(docId).update(incidencia);
   }
   //Crea un nuevo registro en base de datos
   create(incidencia: Incidencias) {

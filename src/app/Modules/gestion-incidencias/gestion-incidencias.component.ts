@@ -10,12 +10,20 @@ import { Location } from '@angular/common';
   styleUrls: ['./gestion-incidencias.component.css'],
 })
 export class GestionIncidenciasComponent implements OnInit {
-  constructor(private location:Location) {}
+  listIncidencias:Incidencias[];
 
-  ngOnInit(): void {}
+  constructor(private service: IncidenciaService, private location:Location) {}
+
+
+
+  ngOnInit(): void {
+    //Obtenemos todos los registros de la base de datos para mostralo
+    this.service.getAll().subscribe((incidencia) => {
+      this.listIncidencias = incidencia;
+    });
+  }
 
   goBack(){
     this.location.back();
   }
-
 }
