@@ -19,35 +19,50 @@ import { Location } from '@angular/common';
 export class RevisionIncidenciasComponent implements OnInit {
   listIncidencias: Incidencias[];
   listFiltro: string[] = ['Revisadas', 'Sin revisar', 'Todas'];
-  filtro: string = this.listFiltro[2];
-  incidenciasFiltradas: Incidencias[];
+  incidenciasFiltradas: Incidencias[] = [];
+  filtrado: string = 'Todas';
+
 
   constructor(private service: IncidenciaService, private location: Location) {}
 
-  ngOnInit(): void {
-    //Obtenemos todos los registros de la base de datos para mostralo
-    this.service.getAll().subscribe((incidencia) => {
-      this.listIncidencias = incidencia;
-    });
-  }
-
-  /* *Posible solucion al filtro
- this.listIncidencias.forEach((element) => {
-        if (this.filtro == 'Revisadas') {
-          if (element.revisada) this.incidenciasFiltradas.push(element);
-        }
-        if (this.filtro == 'Sin revisar') {
-          if (!element.revisada) this.incidenciasFiltradas.push(element);
-        } else {
-          this.incidenciasFiltradas.push(element);
-        }
-      });
-
-*/
+  ngOnInit(): void {this.cambiarFiltro()}
 
   goBack(): void {
     this.location.back();
   }
 
-  cambiarFiltro() {}
+  cambiarFiltro():number {
+    this.service.getAll().subscribe((incidencia) => {
+      this.incidenciasFiltradas = incidencia;
+    });
+    console.log(this.incidenciasFiltradas.length)
+
+    //Mostramos las incidencias revisadas
+    if(this.filtrado == 'Revisadas'){
+      console.log(this.filtrado)
+      this.listIncidencias = [];
+      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada == true)
+      console.log(this.listIncidencias[0].revisada)
+      return 0;
+    }
+    //Mostramos las incidencias no revisadas
+    if(this.filtrado = 'Sin revisar'){
+      console.log(this.filtrado)
+      this.listIncidencias = [];
+      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada == false)
+      console.log(this.listIncidencias[0].revisada)
+      return 0;
+    }
+    if(this.filtrado = 'Todas'){
+      console.log(this.filtrado)
+      this.listIncidencias = [];
+      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada != null)
+      console.log(this.listIncidencias[0].revisada)
+      return 0;
+      }
+      return null;
+  }
+
+
+
 }

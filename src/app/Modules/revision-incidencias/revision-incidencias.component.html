@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
 <div class="container mt-4">
-  <select [(ngModel)]="filtro">
+  <select [(ngModel)]="filtrado" (ngModelChange)="cambiarFiltro()">
+    <option *ngFor="let estados of listFiltro" [value]="estados">{{estados}}</option>
 
   </select>
   <table class="table table-dark table-striped">

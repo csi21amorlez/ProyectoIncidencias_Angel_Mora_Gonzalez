@@ -17,6 +17,7 @@ export class DetailIncidenciasComponent implements OnInit {
   optionEstado:string = '';
 
 
+
   constructor(
     private service: IncidenciaService,
     private ruta: ActivatedRoute,
