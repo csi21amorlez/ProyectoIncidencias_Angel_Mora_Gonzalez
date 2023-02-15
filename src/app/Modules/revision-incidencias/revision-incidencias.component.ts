@@ -10,6 +10,7 @@ import { IncidenciaService } from '../../Shared/Services/incidencia.service';
 import { Incidencias } from '../../Shared/Interfaces/incidencias';
 import { MenuComponent } from '../menu/menu.component';
 import { Location } from '@angular/common';
+import { docData } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-revision-incidencias',
@@ -22,47 +23,54 @@ export class RevisionIncidenciasComponent implements OnInit {
   incidenciasFiltradas: Incidencias[] = [];
   filtrado: string = 'Todas';
 
-
   constructor(private service: IncidenciaService, private location: Location) {}
 
-  ngOnInit(): void {this.cambiarFiltro()}
+  ngOnInit(): void {
+    this.cambiarFiltro();
+  }
 
   goBack(): void {
     this.location.back();
   }
 
-  cambiarFiltro():number {
-    this.service.getAll().subscribe((incidencia) => {
-      this.incidenciasFiltradas = incidencia;
-    });
-    console.log(this.incidenciasFiltradas.length)
+  cambiarFiltro() {
+    switch (this.filtrado) {
+      case this.listFiltro[0]:
+        this.listIncidencias = [];
+        this.service.getIncidenciaByEstado(true).subscribe((resp: any) => {
+          resp.forEach((incidenciasSnapshot: any) => {
+            this.listIncidencias.push({
+              ...incidenciasSnapshot.payload.doc.data(),
+              id: incidenciasSnapshot.payload.doc.id,
+            });
+          });
+        });
+        break;
 
-    //Mostramos las incidencias revisadas
-    if(this.filtrado == 'Revisadas'){
-      console.log(this.filtrado)
-      this.listIncidencias = [];
-      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada == true)
-      console.log(this.listIncidencias[0].revisada)
-      return 0;
+      case this.listFiltro[1]:
+        this.listIncidencias = [];
+        this.service.getIncidenciaByEstado(false).subscribe((resp: any) => {
+          resp.forEach((incidenciasSnapshot: any) => {
+            this.listIncidencias.push({
+              ...incidenciasSnapshot.payload.doc.data(),
+              id: incidenciasSnapshot.payload.doc.id,
+            });
+          });
+        });
+        break;
+
+      case this.listFiltro[2]:
+        console.log(this.listFiltro[2]);
+        this.listIncidencias = [];
+        this.service.getAll().subscribe((incidencia) => {
+          this.listIncidencias = incidencia;
+        });
+        break;
+
+      default:
+        break;
     }
-    //Mostramos las incidencias no revisadas
-    if(this.filtrado = 'Sin revisar'){
-      console.log(this.filtrado)
-      this.listIncidencias = [];
-      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada == false)
-      console.log(this.listIncidencias[0].revisada)
-      return 0;
+    {
     }
-    if(this.filtrado = 'Todas'){
-      console.log(this.filtrado)
-      this.listIncidencias = [];
-      this.listIncidencias = this.incidenciasFiltradas.filter(x => x.revisada != null)
-      console.log(this.listIncidencias[0].revisada)
-      return 0;
-      }
-      return null;
   }
-
-
-
 }

@@ -59,4 +59,7 @@ export class IncidenciaService {
   create(incidencia: Incidencias) {
     return addDoc(this.coleccionIncidencias, incidencia);
   }
+  getIncidenciaByEstado(estado:boolean){
+    return this.af.collection('Incidencias', ref => ref.where('revisada', '==', estado)).snapshotChanges();
+  }
 }
