@@ -23,12 +23,6 @@ export class AuthComponent implements OnInit {
     })
   }
 
-  onSubmit(){
-    if(this.auth.login(this.formulario.value)[1] == true){
-      this.router.navigateByUrl('menu')
-    } else{
-      alert('Login fallido')
-    }
-  }
+
 
 }

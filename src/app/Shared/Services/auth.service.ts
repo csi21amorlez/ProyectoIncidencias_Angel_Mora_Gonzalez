@@ -1,33 +1,57 @@
 import { Injectable } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Router } from '@angular/router';
+import * as firebase from 'firebase/app';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs';
 import { Usuario } from '../Interfaces/usuario';
-import { AuthData } from '../Interfaces/auth-data';
-import { createUserWithEmailAndPassword, signOut } from '@firebase/auth';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
+  user$: Observable<Usuario>;
 
-  constructor(private auth:Auth) { }
-
-  login({email, password}:AuthData){
-    console.log('Logeado')
-    try{
-      return [true,signInWithEmailAndPassword(this.auth, email, password)];
-    } catch {
-      return false
-    }
-
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private router: Router
+  ) {
+    this.user$ = this.afAuth.authState.switchMap((user) => {
+      if (user) {
+        return this.afs.doc<Usuario>(`users/${user.id}`).valueChanges();
+      } else {
+        return Observable.of(null);
+      }
+    });
   }
 
-  register({email, password}:AuthData){
-    return createUserWithEmailAndPassword(this.auth, email, password)
+  private oAuthLogin(provider) {
+    return this.afAuth.signInWithPopup(provider).then((credential) => {
+      this.updateUserData(credential.user);
+    });
   }
 
-  logOut(){
-    return signOut(this.auth);
+  signOut() {
+    this.afAuth.signOut();
   }
 
-
+  private updateUserData(user: Usuario) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument<any> = this.afs.doc(
+      `users/${user.id}`
+    );
+    const data: Usuario = {
+      id: user.id,
+      email: user.email,
+      nombre: user.nombre,
+      clave: user.clave,
+      rol: {
+        subscriber: true,
+      },
+    };
+    return userRef.set(data, { merge: true });
+  }
 }
