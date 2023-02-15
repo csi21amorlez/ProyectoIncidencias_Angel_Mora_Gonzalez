@@ -10,7 +10,9 @@ import { IncidenciaService } from '../../Shared/Services/incidencia.service';
 import { Incidencias } from '../../Shared/Interfaces/incidencias';
 import { MenuComponent } from '../menu/menu.component';
 import { Location } from '@angular/common';
+
 import { docData } from '@angular/fire/firestore';
+import { AngularFireModule } from '@angular/fire/compat';
 
 @Component({
   selector: 'app-revision-incidencias',
@@ -20,7 +22,6 @@ import { docData } from '@angular/fire/firestore';
 export class RevisionIncidenciasComponent implements OnInit {
   listIncidencias: Incidencias[];
   listFiltro: string[] = ['Revisadas', 'Sin revisar', 'Todas'];
-  incidenciasFiltradas: Incidencias[] = [];
   filtrado: string = 'Todas';
 
   constructor(private service: IncidenciaService, private location: Location) {}
@@ -28,7 +29,6 @@ export class RevisionIncidenciasComponent implements OnInit {
   ngOnInit(): void {
     this.cambiarFiltro();
   }
-
   goBack(): void {
     this.location.back();
   }
@@ -60,7 +60,6 @@ export class RevisionIncidenciasComponent implements OnInit {
         break;
 
       case this.listFiltro[2]:
-        console.log(this.listFiltro[2]);
         this.listIncidencias = [];
         this.service.getAll().subscribe((incidencia) => {
           this.listIncidencias = incidencia;
