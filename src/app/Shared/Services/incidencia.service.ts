@@ -16,7 +16,12 @@ import {
   doc,
   updateDoc,
 } from '@firebase/firestore';
-import { Firestore, collectionData, docData, where } from '@angular/fire/firestore';
+import {
+  Firestore,
+  collectionData,
+  docData,
+  where,
+} from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Incidencias } from '../Interfaces/incidencias';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -41,11 +46,6 @@ export class IncidenciaService {
   //Obtiene una incidencia por su id
   getById(id: string) {
     return this.af.collection('Incidencias').doc(id).snapshotChanges();
-
-    /*
-
-    return docData(REF, { idField: 'id' });
-  */
   }
   //Elimina una incidencia de la base de datos
   delete(id: string) {
@@ -60,9 +60,9 @@ export class IncidenciaService {
     return addDoc(this.coleccionIncidencias, incidencia);
   }
 
-
-  getIncidenciaByEstado(estado:boolean){
-    return this.af.collection('Incidencias', ref => ref.where('revisada', '==', estado)).snapshotChanges();
+  getIncidenciaByEstado(estado: boolean) {
+    return this.af
+      .collection('Incidencias', (ref) => ref.where('revisada', '==', estado))
+      .snapshotChanges();
   }
-
 }
