@@ -28,5 +28,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.auth.SignUp(this.formulario.value);
+    alert('Usuario creado correctamente')
+    this.router.navigate(['/login'])
   }
 }
