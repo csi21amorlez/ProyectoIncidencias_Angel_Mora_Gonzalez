@@ -7,34 +7,9 @@ import { NavbarModule } from '../navbar/navbar.module';
 
 const routes: Routes = [
   //Ruta vacía por defecto
-  { path: '', component: MenuComponent },
+  { path: 'menu', component: MenuComponent },
 
   //Ruta hacía el modulo de intrudcción de incidencias
-  {
-    path: 'IntroduccionIncidencias',
-    loadChildren: () =>
-      import(
-        '../introduccion-incidencias/introduccion-incidencias.module'
-      ).then((m) => m.IntroduccionIncidenciasModule),
-  },
-
-  //Ruta hacía el modulo de gestión de incidencias
-  {
-    path: 'GestionIncidencias',
-    loadChildren: () =>
-      import(
-        '../gestion-incidencias/gestion-incidencias.module'
-      ).then((m) => m.GestionIncidenciasModule),
-  },
-
-  //Ruta hacía el modulo de revisión de incidencias
-  {
-    path: 'RevisionIncidencias',
-    loadChildren: () =>
-      import(
-        '../revision-incidencias/revision-incidencias.module'
-      ).then((m) => m.RevisionIncidenciasModule),
-  },
 ];
 
 @NgModule({

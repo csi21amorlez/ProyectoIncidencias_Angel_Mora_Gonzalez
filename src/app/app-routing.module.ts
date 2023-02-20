@@ -2,11 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {
-    path: 'menu',
-    loadChildren: () =>
-      import('./Modules/menu/menu.module').then((m) => m.MenuModule),
-  },
 
   {
     path: 'navbar',

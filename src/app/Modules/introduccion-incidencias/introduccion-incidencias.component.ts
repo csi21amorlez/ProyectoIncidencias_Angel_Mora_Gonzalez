@@ -40,5 +40,5 @@ export class IntroduccionIncidenciasComponent implements OnInit {
     alert('Incidencia creada correctamente');
     this.location.back();
   }
-  
+
 }
