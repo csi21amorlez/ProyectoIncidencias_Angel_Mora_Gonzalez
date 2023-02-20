@@ -1,22 +1,13 @@
-<div class="container w-100 h-25 shadow">
-  <h1 class="text-center">Bienvenido al proyecto Incidencias</h1>
+<div class="container shadow">
+  <h1 class="text-center">Bienvenido a la aplicación de gestión de incidencias</h1>
 </div>
-<header>
 
-</header>
-
-
-<div class="container mt-5" name="loginForm">
-
-  <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
-    <div class="container w-25 d-grid gap-2 pb-3">
-      <button disabled class="btn btn-dark">Formulario de login</button>
-    </div>
-    <div class="container w-25 border shadow">
-      <input type="text" class="form-control mt-3" formControlName="email" placeholder="Correo electronico" />
-      <input type="text" class="form-control mt-3" formControlName="password" placeholder="Contraseña" />
-      <button class="btn btn-dark mx-3" type="submit">Enviar</button>
-      <button class="btn btn-primary mx-3" [routerLink]="">Registrarse</button>
-    </div>
-  </form>
+<div class="conatiner w-25 shadow center mx-auto">
+  <div class="card mt-3">
+    <button class="btn btn-primary" routerLink="login">Login</button>
+  </div>
+  <div class="card mt-3">
+    <button class="btn btn-primary" routerLink="register">Registrarse</button>
+  </div>
 </div>
+
