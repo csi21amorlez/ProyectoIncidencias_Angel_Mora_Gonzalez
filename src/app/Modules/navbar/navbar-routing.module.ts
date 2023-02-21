@@ -31,13 +31,15 @@ const routes: Routes = [
   },
   {
     path: 'logout',
+    loadChildren: () => import('../auth/auth.module').then((m) => m.AuthModule),
+  },
+  {
+    path: 'Administracion',
     loadChildren: () =>
-      import('../auth/auth.module').then(
-        (m) => m.AuthModule
+      import('../administracion/administracion.module').then(
+        (m) => m.AdministracionModule
       ),
   },
-
-
 ];
 
 @NgModule({

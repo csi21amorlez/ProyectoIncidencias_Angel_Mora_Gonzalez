@@ -1,0 +1,28 @@
+<div class="container mt-4">
+  <div class="abs-center">
+    <table class="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Rol</th>
+          <th scope="col">Contraseña</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.rol}}</td>
+          <td>{{usuario.password}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+
+    <h1>{{usuMail.nombre}}</h1>
+    <h1>{{usuMail.email}}</h1>
+
+    <button class="btn btn-primary mx-3" (click)="goBack()">Volver</button>
+    <button class="btn btn-danger mx-3" (click)="delete(usuario.id)">Eliminar</button>
+    <button class="btn btn-danger"(click)="mostarOtro()"></button>
+  </div>
+</div>
