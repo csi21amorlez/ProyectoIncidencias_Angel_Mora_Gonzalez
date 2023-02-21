@@ -6,23 +6,21 @@ import {
   UrlTree,
   Router,
 } from '@angular/router';
-import { Observable, map, take } from 'rxjs';
+import { Observable, take, map } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { UsuarioService } from '../../Shared/Services/usuario.service';
 import { Usuario } from '../../Shared/Interfaces/usuario';
-import { AdministracionComponent } from './administracion.component';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminGuardGuard implements CanActivate {
-  listUsuario: Usuario[];
-
+export class GestorGuard implements CanActivate {
   constructor(
     private auth: AngularFireAuth,
     private router: Router,
     private service: UsuarioService
   ) {}
+  listUsuario: Usuario[];
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -42,10 +40,14 @@ export class AdminGuardGuard implements CanActivate {
         const usuario = this.listUsuario.filter(
           (usuario) => usuario.email === user.email
         )[0];
-        if (!user || usuario.rol != 'Administrador') {
-          alert('Usuario no autorizado');
-          this.router.navigate(['/logout']);
-          return false;
+        if (usuario.rol != 'Administrador') {
+          if (!user || usuario.rol != 'Gestor') {
+            alert('Usuario no autorizado')
+            this.router.navigate(['/logout']);
+            return false;
+          } else {
+            return true;
+          }
         } else {
           return true;
         }

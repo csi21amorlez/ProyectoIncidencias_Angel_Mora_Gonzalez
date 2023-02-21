@@ -36,12 +36,4 @@ export class DetailComponent implements OnInit {
     console.log(id);
     this.service.eliminar(id);
   }
-  mostarOtro() {
-    console.log('[INFO] -- Entrando en mostrar otro');
-    this.service
-      .getUsuarioByMail('angeloficial21@gmail.com')
-      .subscribe((resp: any) => {
-        
-      });
-  }
 }

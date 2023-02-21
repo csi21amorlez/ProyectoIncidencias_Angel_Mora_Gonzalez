@@ -6,7 +6,7 @@ import { AuthGuard } from '../../auth.guard';
 import { DetailComponent } from './detail/detail.component';
 import { AdminGuardGuard } from './admin-guard.guard';
 
-const routes: Routes = [{ path: '', component: AdministracionComponent,  },
+const routes: Routes = [{ path: '', component: AdministracionComponent, canActivate:[AuthGuard]  },
 {path:'Detalle/:id', component:DetailComponent, canActivate:[AuthGuard]}];
 
 @NgModule({

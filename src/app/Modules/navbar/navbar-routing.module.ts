@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NavbarComponent } from './navbar.component';
+import { AdminGuardGuard } from '../administracion/admin-guard.guard';
+import { RevisorGuard } from '../revision-incidencias/revisor.guard';
+import { GestorGuard } from '../gestion-incidencias/gestor.guard';
 
 const routes: Routes = [
   { path: '', component: NavbarComponent },
@@ -18,7 +21,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('../gestion-incidencias/gestion-incidencias.module').then(
         (m) => m.GestionIncidenciasModule
-      ),
+      ), canActivate:[GestorGuard]
   },
 
   //Ruta hacía el modulo de revisión de incidencias
@@ -27,7 +30,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('../revision-incidencias/revision-incidencias.module').then(
         (m) => m.RevisionIncidenciasModule
-      ),
+      ), canActivate:[RevisorGuard]
   },
   {
     path: 'logout',
@@ -38,7 +41,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('../administracion/administracion.module').then(
         (m) => m.AdministracionModule
-      ),
+      ), canActivate:[AdminGuardGuard]
   },
 ];
 
