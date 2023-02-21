@@ -22,7 +22,6 @@ export class DetailIncidenciasComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = this.ruta.snapshot.paramMap.get('id');
-    console.log(this.id);
     this.service.getById(this.id).subscribe((resp: any) => {
       this.incidencia = resp.payload.data();
     });

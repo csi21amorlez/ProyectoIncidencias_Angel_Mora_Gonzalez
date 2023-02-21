@@ -1,0 +1,24 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Correo electronico</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of listUsuarios">
+        <td>{{usuario.nombre}}</td>
+        <td>{{usuario.email}}</td>
+        <button class="btn btn-primary btn-lg" [routerLink]="['Detalle/', usuario.id]">Detalle</button>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <button class="btn btn-primary" (click)="goBack()">Volver</button>
+
+
+
+</div>
