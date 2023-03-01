@@ -3,9 +3,15 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.6.
 
 ##USUARIOS
--Administrador = `administrador@gmail.com`, `soyElAdministrador`
--Gestor (Tiene acceso a gestion incidencias) = `gestor@gmail.com`, `soyElGestor`
+-Administrador = `administrador@gmail.com`, `soyElAdministrador`,
+
+-Gestor (Tiene acceso a gestion incidencias) = `gestor@gmail.com`, `soyElGestor`,
+
 -Revisor (Tiene acceso a revision incidencias) = `revisor@gmail.com`, `soyElRevisor`
+
+##Enlace a la app
+url = https://proyectoincidencias-9b342.web.app
+
 
 ## Development server
 
