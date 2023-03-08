@@ -21,12 +21,15 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  onSubmit(){
+  async onSubmit(){
    this.auth.SignIn(this.formulario.get('email').value, this.formulario.get('password').value).then(resp => {
-    if(resp == true)
+    if(resp == true){
+      console.log(resp)
       this.router.navigate(['/menu'])
-    else{
-      alert('Usuario no enonctrado')
+    }
+     if(resp==false){
+      alert('Usuario no encontrado')
+      console.log(resp)
       this.formulario.reset();
     }
    })
